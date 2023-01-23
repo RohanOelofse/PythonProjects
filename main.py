@@ -15,3 +15,11 @@ hours_per_week = int(input(f"{'Hours per Week':.<{COLUMN_LENGHT}}: "))
 days_per_week = int(input(f"{'Days per Week':.<{COLUMN_LENGHT}}: "))
 holidays_per_year = int(input(f"{'Holidays per Year':.<{COLUMN_LENGHT}}: "))
 vacation_days_per_year = int(input(f"{'Vacation Days per Year':.<{COLUMN_LENGHT}}: "))
+working_days_per_year = 52 * days_per_week
+hours_per_day = hours_per_week / days_per_week
+unadjusted_salary = salary_per_hour * hours_per_day * working_days_per_year
+adjusted_salary = salary_per_hour * hours_per_day * (working_days_per_year - holidays_per_year - vacation_days_per_year)
+print(f"{'Unadjusted Salary':.<{COLUMN_LENGHT}}: ${unadjusted_salary:6,.2f}")
+print(f"{'Adjusted Annual Salary':.<{COLUMN_LENGHT}}: ${unadjusted_salary:6,.2f}")
+print("=" * DASH_LENGHT)
+print("Goodbye!")
