@@ -1,0 +1,30 @@
+========================================
+The Salary Calculator program
+========================================
+Salary per hour..........: 13.30
+Hours per Week...........: 40
+Days per Week............: 5
+Holidays per Year........: 6
+Vacation Days per Year...: 10
+Unadjusted Salary........: $27,664.00
+Adjusted Annual Salary...: $25,961.60
+========================================
+Goodbye!
+
+
+========================================
+The Salary Calculator program
+========================================
+Salary per hour..........: 9.75
+Hours per Week...........: 20
+Days per Week............: 5
+Holidays per Year........: 6
+Vacation Days per Year...: 0
+Unadjusted Salary........: $10,140.00
+Adjusted Annual Salary...: $9,906.00
+========================================
+Goodbye!
+
+Good, Bad, Ugly
+
+Was quite easy, I just had to do some reading about the 'f' and rounding in the print.
