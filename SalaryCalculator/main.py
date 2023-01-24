@@ -22,8 +22,10 @@ working_days_per_year = 52 * days_per_week
 hours_per_day = hours_per_week / days_per_week  # calculated by dividing the hours per week by the days per week
 # calculated by taking the hourly rate multiplied by hours per day multiplied by total work days in a year
 unadjusted_salary = salary_per_hour * hours_per_day * working_days_per_year
+unadjusted_salary = round(unadjusted_salary, 2)
 # calculated the same as unadjusted, just minus the holidays from the work days per year
 adjusted_salary = salary_per_hour * hours_per_day * (working_days_per_year - holidays_per_year - vacation_days_per_year)
+adjusted_salary = round(adjusted_salary, 2)
 
 print(f"{'Unadjusted Salary':.<{COLUMN_LENGHT}}: ${unadjusted_salary:6,.2f}")
 print(f"{'Adjusted Annual Salary':.<{COLUMN_LENGHT}}: ${adjusted_salary:6,.2f}")
