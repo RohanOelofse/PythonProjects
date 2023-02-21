@@ -111,7 +111,7 @@ def delete_student(students):
     """
 
     :param students: The dictionary of students
-    :return: Deletes a student from the students dictionary
+    :return: Deletes a student from the student dictionary
     """
     if len(students) == 0:
         print("There are no students to delete...")
