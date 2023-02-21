@@ -62,6 +62,7 @@ def update_student(students):
     """
     if len(students) == 0:
         print("There are no students to update")
+        print('')
         return
     else:
         try:
@@ -114,6 +115,7 @@ def delete_student(students):
     """
     if len(students) == 0:
         print("There are no students to delete...")
+        print('')
         return
     else:
         try:
