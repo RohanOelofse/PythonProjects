@@ -35,7 +35,7 @@ def update_student(students):
         print("There are no students to update")
         return
     else:
-        student_id = int(input("Please enter student id number: "))
+        student_id = int(input("Please enter student ID number: "))
         student = students[student_id]
         first_name, last_name = student.values()
 
@@ -50,12 +50,15 @@ def update_student(students):
             print("No data changed. update canceled")
             return
 
-        if first_name > '':
+        if new_first_name > '':
             student['first_name'] = new_first_name
+        else:
+            student['first_name'] = first_name
 
-        if last_name > '':
-            student[last_name] = new_last_name
-
+        if new_last_name > '':
+            student['last_name'] = new_last_name
+        else:
+            student['last_name'] = last_name
 
 def delete_student(students):
     if len(students) == 0:
