@@ -30,7 +30,7 @@ def list_students(students):
         for student_id, student_name in students.items():
             first_name, last_name = student_name.values()
 
-            print(f"{student_id:>{4}} {first_name:<{12}} {last_name:>{13}}")
+            print(f"{student_id:>{4}} {first_name:<{16}} {last_name}")
 
     print('')
 
@@ -77,8 +77,8 @@ def update_student(students):
                 return
             print('')
 
-            new_first_name = str(input(f"Please enter the Student's First Name or press enter to keep \
-            {first_name}: ")).title()
+            new_first_name = str(input(f'Please enter the Student\'s First Name or press enter to keep {first_name}: '))\
+                .title()
             new_last_name = str(input(f'Please enter the Student\'s Last Name or press enter to keep {last_name}: '))\
                 .title()
             print('')
