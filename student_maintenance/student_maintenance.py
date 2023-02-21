@@ -82,6 +82,7 @@ def update_student(students):
                 .title()
             print('')
 
+            # if no new names were entered the update would be canceled
             if new_first_name == '' and new_last_name == '':
                 print("No data changed. update canceled")
                 return
