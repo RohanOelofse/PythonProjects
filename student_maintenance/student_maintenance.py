@@ -120,22 +120,26 @@ def delete_student(students):
         print("There are no students to delete...")
         print('')
         return
-    else:
-        try:
 
-            student_id = dv.get_positive_num("Please enter the Student ID to be deleted: ")
+    try:
 
-            student = students[student_id]
-            first_name, last_name = student.values()
+        student_id = dv.get_positive_num("Please enter the Student ID to be deleted: ")
 
-            if not dv.get_yes_no(f"Please confirm deleting Student ID #{student_id} {first_name} {last_name}"):
-                print("Student delete canceled...")
-                print('')
-                return
-            else:
-                del students[student_id]
-                print(f"Student ID #{student_id} {first_name} {last_name} is deleted...")
-                print('')
+        if student_id not in students:
+            print('This student ID does not exist')
+            return
 
-        except KeyError:
-            print(f'Student ID #{student_id} could not be found.')
+        student = students[student_id]
+        first_name, last_name = student.values()
+
+        if not dv.get_yes_no(f"Please confirm deleting Student ID #{student_id} {first_name} {last_name}"):
+            print("Student delete canceled...")
+            print('')
+            return
+        else:
+            del students[student_id]
+            print(f"Student ID #{student_id} {first_name} {last_name} is deleted...")
+            print('')
+
+    except KeyError:
+        print(f'Student ID #{student_id} could not be found.')
