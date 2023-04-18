@@ -82,34 +82,23 @@ class AdvPasswordValidator(PV.PasswordValidator):
         :return:
         """
         super().is_valid(password)
-        self.__validate_symbols()
-        self.__validate_min()
-        self.__validate_max()
 
         try:
-            self.__validate_uppercase()
+            self.__validate_symbols()
         except PE.PasswordException as e:
             self.errors.append(e)
 
         try:
-            self.__validate_lowercase()
+            self.__validate_min()
         except PE.PasswordException as e:
             self.errors.append(e)
 
         try:
-            self.__validate_digit()
-        except PE.PasswordException as e:
-            self.errors.append(e)
-
-        try:
-            self.__validate_symbol()
+            self.__validate_max()
         except PE.PasswordException as e:
             self.errors.append(e)
 
         if len(self.errors) == 0:
             return True
         else:
-            for e in self.errors:
-                print(f"{e.log['password']} Password must contain {e.log['min_required']} {e.log['error_type']} "
-                      f"but yours only contained {e.log['char_count']}")
-                return False
+            return False

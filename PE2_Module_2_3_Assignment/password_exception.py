@@ -15,7 +15,7 @@ __status__ = 'Development'
 
 class PasswordException(Exception):
 
-    def __innit__(self, password, error_type, min_required, char_count):
+    def __init__(self, password, error_type, min_required, char_count):
         """
 
         :param password:

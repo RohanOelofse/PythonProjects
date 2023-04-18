@@ -5,7 +5,6 @@
 """
 import password_validator as PV
 import adv_password_validator as APV
-import password_exception
 
 # The following are module level dunders (metadata) for the authorship information
 __author__ = 'Rohan Oelofse'
@@ -26,7 +25,7 @@ def display_errors(pw):
               f"but yours only contained {e.log['char_count']}")
 
 
-def default_validator(pw):
+def default_validator():
     """
 
     :return:
@@ -34,7 +33,7 @@ def default_validator(pw):
 
     pw = PV.PasswordValidator(debug_mode=False)
 
-    if pw.is_valid("Abb11!@"):
+    if pw.is_valid("Ab11!@"):
         print("Valid Password")
     else:
         display_errors(pw)
@@ -47,19 +46,18 @@ def default_validator(pw):
         display_errors(pw)
 
 
-def advanced_validator(apw):
+def advanced_validator():
     """
 
     :return:
     """
 
-    apw = APV.PasswordValidator(debug_mode=False)
+    apw = APV.AdvPasswordValidator(debug_mode=False)
 
-    if apw.is_valid("Abb11!@"):
+    if apw.is_valid("Ab11!@"):
         print("Valid Password")
     else:
         display_errors(apw)
-
     print()
 
     if apw.is_valid("AAbb11!@"):
@@ -69,6 +67,6 @@ def advanced_validator(apw):
 
 
 if __name__ == '__main__':
-    # default_validator(pw)
+    default_validator()
 
-    advanced_validator(apw)
+    advanced_validator()
