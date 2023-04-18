@@ -6,4 +6,6 @@ All Python projects for CSC365
   <li>PE1: Module 4 - student_maintenance:</br>
   <p>Created functions to manage student information in dictionary, functions include: list_students, add_student, update_student, delete_student</p>
   </li>
+  <li>PE2: Module 2 & 3 - Password validator
+  </li>
 </ul>
