@@ -3,8 +3,8 @@
 """
 My Python Password Validator
 """
-
 import inspect
+import password_exception as PE
 
 # The following are module level dunders (metadata) for the authorship information
 __author__ = 'Rohan Oelofse'
@@ -14,69 +14,90 @@ __status__ = 'Development'
 
 
 class PasswordValidator:
-    __UPPERCASE_MIN = 2
-    __LOWERCASE_MIN = 2
-    __DIGIT_MIN = 2
-    __SYMBOL_MIN = 2
+    UPPERCASE_MIN = 2
+    LOWERCASE_MIN = 2
+    DIGIT_MIN = 2
+    SYMBOL_MIN = 2
+    VALID_SYMBOLS = ('@', '!', '*', '$')
 
     def __init__(self, password=None, debug_mode=False):
-        self.__password = password
+        self.password = password
         self.debug_mode = debug_mode
+        self.errors = []
 
     def __str__(self):
-        if self.__password is None:
+        if self.password is None:
             return "None"
         else:
-            return self.__password
+            return self.password
 
-    def is_uppercase_valid(self):
-        count = sum(1 for char in self.__password if char.isupper())
+    def __validate_uppercase(self):
+        char_count = sum(1 for char in self.password if char.isupper())
 
         if self.debug_mode:
-            print(f"{count:3d} = {inspect.currentframe().f_code.co_name}")
-        if count >= 2:
-            return True
-        else:
-            print("Password must have at least", PasswordValidator.__UPPERCASE_MIN, "uppercase letters")
-            return False
+            print(inspect.currentframe().f_code.co_name, "=", char_count)
+
+        if char_count < PasswordValidator.UPPERCASE_MIN:
+            raise PE.PasswordException(self.password, 'uppercase', PasswordValidator.UPPERCASE_MIN, char_count)
+
+    def __validate_lowercase(self):
+        char_count = sum(1 for char in self.password if char.islower())
+
+        if self.debug_mode:
+            print(inspect.currentframe().f_code.co_name, "=", char_count)
+
+        if char_count < PasswordValidator.LOWERCASE_MIN:
+            raise PE.PasswordException(self.password, 'lowercase', PasswordValidator.LOWERCASE_MIN, char_count)
+
+    def __validate_digit(self):
+        char_count = sum(1 for char in self.password if char.isdigit())
+
+        if self.debug_mode:
+            print(inspect.currentframe().f_code.co_name, "=", char_count)
+
+        if char_count < PasswordValidator.DIGIT_MIN:
+            raise PE.PasswordException(self.password, 'digit', PasswordValidator.DIGIT_MIN, char_count)
+
+    def __validate_symbol(self):
+        char_count = sum(1 for char in self.password if not char.isdigit() and not char.isalpha())
+
+        if self.debug_mode:
+            print(inspect.currentframe().f_code.co_name, "=", char_count)
+
+        if char_count < PasswordValidator.LOWERCASE_MIN:
+            raise PE.PasswordException(self.password, 'lowercase', PasswordValidator.LOWERCASE_MIN, char_count)
 
     def is_valid(self, password=None):
 
-        self.__password = password
+        self.password = password
+
+        self.errors.clear()
 
         if self.debug_mode:
             print("===============DEBUG MODE===============")
-            print(f"password = {self.__password}")
+            print("password = ", self)
 
-        if password is None:
-            raise Exception("Password can not be empty")
+        try:
+            self.__validate_uppercase()
+        except PE.PasswordException as e:
+            self.errors.append(e)
 
-        uppercase_valid = self.is_uppercase_valid()
+        try:
+            self.__validate_lowercase()
+        except PE.PasswordException as e:
+            self.errors.append(e)
 
-        if uppercase_valid:
+        try:
+            self.__validate_digit()
+        except PE.PasswordException as e:
+            self.errors.append(e)
+
+        try:
+            self.__validate_symbol()
+        except PE.PasswordException as e:
+            self.errors.append(e)
+
+        if len(self.errors) == 0:
             return True
         else:
             return False
-
-
-pv = PasswordValidator(debug_mode=True)
-
-if pv.is_valid("ABC123abc!*"):
-    print("Valid Password")
-else:
-    print("Password is invalid")
-
-print()
-
-if pv.is_valid("a"):
-    print("Valid Password")
-else:
-    print("Password is invalid")
-
-print()
-
-if pv.is_valid("1234"):
-    print("Valid Password")
-else:
-    print("Password is invalid")
-
