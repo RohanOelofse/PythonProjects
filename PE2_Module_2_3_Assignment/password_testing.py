@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 """
-
+Password testing
+GitHub: https://github.com/RohanOelofse/PythonProjects/tree/main/PE2_Module_2_3_Assignment
 """
 import password_validator as PV
 import adv_password_validator as APV
@@ -15,9 +16,9 @@ __status__ = 'Development'
 
 def display_errors(pw):
     """
-
-    :param pw:
-    :return:
+    This function displays the errors picked up
+    :param pw: The password
+    :return: None
     """
     print("Invalid password")
     for e in pw.errors:
@@ -27,8 +28,8 @@ def display_errors(pw):
 
 def default_validator():
     """
-
-    :return:
+    This function uses the default validator to validate passwords
+    :return: None
     """
 
     pw = PV.PasswordValidator(debug_mode=False)
@@ -48,8 +49,8 @@ def default_validator():
 
 def advanced_validator():
     """
-
-    :return:
+    This function uses the advanced validator to validate passwords
+    :return: None
     """
 
     apw = APV.AdvPasswordValidator(debug_mode=False)

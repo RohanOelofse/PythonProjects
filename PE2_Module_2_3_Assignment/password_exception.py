@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 """
-
+Password Exception handling
+GitHub: https://github.com/RohanOelofse/PythonProjects/tree/main/PE2_Module_2_3_Assignment
 """
 
 import csv
@@ -14,15 +15,18 @@ __status__ = 'Development'
 
 
 class PasswordException(Exception):
+    """
+    This class handles the exceptions picked up
+    """
 
     def __init__(self, password, error_type, min_required, char_count):
         """
-
-        :param password:
-        :param error_type:
-        :param min_required:
-        :param char_count:
-        :return:
+        This function writes the errors it picks up to a text file.
+        :param password: The password
+        :param error_type: Type of error
+        :param min_required: min required amount
+        :param char_count: The char count
+        :return: None
         """
 
         self.log = {'password': password,

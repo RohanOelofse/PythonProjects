@@ -2,6 +2,7 @@
 
 """
 My Python Password Validator
+GitHub: https://github.com/RohanOelofse/PythonProjects/tree/main/PE2_Module_2_3_Assignment
 """
 import inspect
 import password_exception as PE
@@ -14,6 +15,10 @@ __status__ = 'Development'
 
 
 class PasswordValidator:
+    """
+    This class tests the password for minimum uppercase letter, minimum lowercase letters, minimum digits,
+    and valid symbols
+    """
     UPPERCASE_MIN = 2
     LOWERCASE_MIN = 2
     DIGIT_MIN = 2
@@ -21,17 +26,30 @@ class PasswordValidator:
     VALID_SYMBOLS = ('@', '!', '*', '$')
 
     def __init__(self, password=None, debug_mode=False):
+        """
+
+        :param password: The password
+        :param debug_mode: Debug mode set to True or false
+        """
         self.password = password
         self.debug_mode = debug_mode
         self.errors = []
 
     def __str__(self):
+        """
+        This function tests if the password is empty
+        :return: None if password is empty, else returns the password
+        """
         if self.password is None:
             return "None"
         else:
             return self.password
 
     def __validate_uppercase(self):
+        """
+        This function tests the number of uppercase letters in the password
+        :return: None
+        """
         char_count = sum(1 for char in self.password if char.isupper())
 
         if self.debug_mode:
@@ -41,6 +59,10 @@ class PasswordValidator:
             raise PE.PasswordException(self.password, 'uppercase', PasswordValidator.UPPERCASE_MIN, char_count)
 
     def __validate_lowercase(self):
+        """
+        This function tests the number of lowercase letters in  the password
+        :return: None
+        """
         char_count = sum(1 for char in self.password if char.islower())
 
         if self.debug_mode:
@@ -50,6 +72,10 @@ class PasswordValidator:
             raise PE.PasswordException(self.password, 'lowercase', PasswordValidator.LOWERCASE_MIN, char_count)
 
     def __validate_digit(self):
+        """
+        This function tests the number of digits in the password
+        :return: None
+        """
         char_count = sum(1 for char in self.password if char.isdigit())
 
         if self.debug_mode:
@@ -59,6 +85,10 @@ class PasswordValidator:
             raise PE.PasswordException(self.password, 'digit', PasswordValidator.DIGIT_MIN, char_count)
 
     def __validate_symbol(self):
+        """
+        This function tests the number of symbols in the password
+        :return: None
+        """
         char_count = sum(1 for char in self.password if not char.isdigit() and not char.isalpha())
 
         if self.debug_mode:
@@ -68,6 +98,11 @@ class PasswordValidator:
             raise PE.PasswordException(self.password, 'lowercase', PasswordValidator.LOWERCASE_MIN, char_count)
 
     def is_valid(self, password=None):
+        """
+        This function tests the validation and appends eny errors it picks up
+        :param password: The password provided
+        :return: True or False
+        """
 
         self.password = password
 

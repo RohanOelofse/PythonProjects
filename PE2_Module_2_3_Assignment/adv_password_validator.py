@@ -6,6 +6,7 @@ import password_exception as PE
 
 """
 Advanced Password Validator
+GitHub: https://github.com/RohanOelofse/PythonProjects/tree/main/PE2_Module_2_3_Assignment
 """
 
 # The following are module level dunders (metadata) for the authorship information
@@ -17,7 +18,7 @@ __status__ = 'Development'
 
 class AdvPasswordValidator(PV.PasswordValidator):
     """
-
+    This class validates the password with more advanced limits
     """
     MIN_LIMIT = 8
     MAX_LIMIT = 30
@@ -28,15 +29,15 @@ class AdvPasswordValidator(PV.PasswordValidator):
     # specific symbols
     def __init__(self, debug_mode=False):
         """
-
-        :param debug_mode:
+        Calls the parent debug mode
+        :param debug_mode: True or False
         """
         super().__init__(debug_mode)
 
     def __validate_min(self):
         """
-
-        :return:
+        This function validates the min lenght for the password
+        :return: None
         """
 
         char_count = len(self.password)
@@ -49,8 +50,8 @@ class AdvPasswordValidator(PV.PasswordValidator):
 
     def __validate_max(self):
         """
-
-        :return:
+        This function validates the max lenght for the password
+        :return: None
         """
 
         char_count = len(self.password)
@@ -63,8 +64,8 @@ class AdvPasswordValidator(PV.PasswordValidator):
 
     def __validate_symbols(self):
         """
-
-        :return:
+        This function validates for specific symbols in the password
+        :return: None
         """
         char_count = sum(1 for char in self.password if char in AdvPasswordValidator.VALID_SYMBOLS)
 
@@ -77,9 +78,9 @@ class AdvPasswordValidator(PV.PasswordValidator):
 
     def is_valid(self, password=None):
         """
-
-        :param password:
-        :return:
+        This function uses the other functions to validate the password
+        :param password: The password entered
+        :return: True or False
         """
         super().is_valid(password)
 
