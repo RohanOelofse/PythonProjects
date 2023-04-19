@@ -45,6 +45,14 @@ def default_validator():
         print("Valid Password")
     else:
         display_errors(pw)
+    print()
+
+    if pw.is_valid("Ab1!@"):
+        print("Valid Password")
+    else:
+        display_errors(pw)
+
+    print()
 
 
 def advanced_validator():
@@ -65,6 +73,13 @@ def advanced_validator():
         print("Valid Password")
     else:
         display_errors(apw)
+    print()
+
+    if apw.is_valid("AAb1!@"):
+        print("Valid Password")
+    else:
+        display_errors(apw)
+    print()
 
 
 if __name__ == '__main__':
