@@ -9,6 +9,12 @@ __author__ = 'Rohan Oelofse'
 __version__ = '1.0'
 __date__ = '2023.05.01'
 __status__ = 'Development'
+"""
+This program validates data from a csv file and rewrites it into 2 separate csv file for 
+valid data and invalid data. Valid data also changes format
+
+GitHub = https://github.com/RohanOelofse/PythonProjects/tree/main/PE2Module4_DataValidation
+"""
 
 
 def validate_id(id):
@@ -136,6 +142,10 @@ def process_file():
     valid file and invalid data to the invalid file
     :return:    N/a
     """
+
+    process_file.valid_count = 0
+    process_file.invalid_count = 0
+
     with open('input.csv', mode='r') as input_file, open('valid.csv', 'w', newline='') as valid_file, \
             open('invalid.csv', mode='w') as invalid_file:
         input_reader = csv.reader(input_file, delimiter='|')
@@ -152,6 +162,7 @@ def process_file():
             else:
                 error_string = "C"
             if error_string == "":
+                process_file.valid_count += 1
                 first_name, last_name = process_name(line[1])
                 new_date = process_date(line[4])
                 phone_number = process_phone(line[3])
@@ -161,6 +172,7 @@ def process_file():
                 writer = csv.writer(valid_file, delimiter=',')
                 writer.writerow(data)
             else:
+                process_file.invalid_count += 1
                 line.insert(0, error_string)
                 writer = csv.writer(invalid_file, delimiter='|')
                 writer.writerow(line)
@@ -168,3 +180,7 @@ def process_file():
 
 if __name__ == '__main__':
     process_file()
+    print("Validation Report")
+    print("---------------------------------------")
+    print("Records successfully validated = ", process_file.valid_count)
+    print("Records unsuccessfully validated = ", process_file.invalid_count)
