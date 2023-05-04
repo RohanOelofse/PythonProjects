@@ -178,9 +178,13 @@ def process_file():
                 writer.writerow(line)
 
 
-if __name__ == '__main__':
-    process_file()
+def validation_report():
     print("Validation Report")
     print("---------------------------------------")
     print("Records successfully validated = ", process_file.valid_count)
     print("Records unsuccessfully validated = ", process_file.invalid_count)
+
+
+if __name__ == '__main__':
+    process_file()
+    validation_report()
